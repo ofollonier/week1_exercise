@@ -1,0 +1,54 @@
+---
+title: "Week 1 - Exercise (b)"
+output: html_document
+author: Océane Follonier
+date: 24.09.21
+---
+
+## For this part of the exercise, we are to first generate 100 values sampled from a log-normal distribution ($\mu = 1, \sigma = 0.25$), then create a histogram of the distribution (on the normal and log scale). Finally we also want to report the mean and variance of the sample.
+
+### 1. Generate the 100 sampled values
+
+```{r sample}
+set.seed(42)
+nsamples <- 100
+mu <- 1
+sigma <- 0.25
+x <- rlnorm(n = nsamples, meanlog = mu, sdlog = sigma)
+```
+
+### 2. Plot the histogram of the sample
+
+```{r histogram}
+hist(x, 
+     main="Histogram of samples from log-normal distribution", 
+     xlab="Sample (x)")
+hist(log(x), 
+     main="Histogram on log-normal scale of samples from log-normal distribution", 
+     xlab="Sample (log(x))")
+```
+
+### 3. Report the mean and variance of the sample
+
+```{r stats}
+mean <- mean(x)
+variance <- var(x)
+
+mean_log <- mean(log(x))
+variance_log <- var(log(x))
+```
+<u>Using the original samples:</u>
+
+Mean ($\mu$) of the sample: `r mean`
+
+Variance ($\sigma^2$) of the sample: `r variance`
+
+Standard deviation ($\sigma$) of the sample: `r sqrt(variance)`
+
+<u>Using log-transformed samples:</u>
+
+Mean ($\mu$) of the log-transformed sample: `r mean_log`
+
+Variance ($\sigma^2$) of the log-transformed sample: `r variance_log`
+
+Standard deviation ($\sigma$) of the log-transformed sample: `r sqrt(variance_log)`
